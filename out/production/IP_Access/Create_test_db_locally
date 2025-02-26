@@ -1,0 +1,38 @@
+CREATE DATABASE IP_Access_Project_DB;
+
+CREATE TABLE Users (
+    userID INT NOT NULL AUTO_INCREMENT,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    zipCode VARCHAR(10),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phoneNumber VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (userID)
+);
+
+CREATE TABLE Devices (
+	deviceID INT AUTO_INCREMENT NOT NULL,
+    deviceName VARCHAR(50),
+    availability TINYINT(1) NOT NULL DEFAULT 1,
+    renterID INT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (deviceID),
+    CONSTRAINT fk_renter FOREIGN KEY (renterID) 
+        REFERENCES Users(userID) ON DELETE SET NULL
+);
+
+CREATE TABLE LoanInformation (
+	loanID INT AUTO_INCREMENT PRIMARY KEY,
+    userID INT NOT NULL,           
+    deviceId INT NOT NULL,        
+    startDate DATE NOT NULL,      
+    endDate DATE DEFAULT NULL,    
+    loanStatus VARCHAR(20) NOT NULL DEFAULT 'on time' 
+        CHECK (loanStatus IN ('on time', 'past due')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_loan_user FOREIGN KEY (userID) 
+        REFERENCES Users(userID),
+    CONSTRAINT fk_loan_device FOREIGN KEY (deviceId) 
+        REFERENCES Devices(deviceId)
+);

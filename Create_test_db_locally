@@ -36,3 +36,7 @@ CREATE TABLE LoanInformation (
     CONSTRAINT fk_loan_device FOREIGN KEY (deviceId) 
         REFERENCES Devices(deviceId)
 );
+USE ip_access_project_db;
+insert into devices (deviceName, availability, renterID) values ('tablet', 1, null);
+insert into users (firstName,lastName,zipCode,email,phoneNumber)
+values ('Grace','Tenney','32828','graceatenney@gmail.com', '666-666-6666');

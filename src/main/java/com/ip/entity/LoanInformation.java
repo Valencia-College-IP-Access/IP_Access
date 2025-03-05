@@ -11,12 +11,15 @@ import java.time.LocalDate;
 public class LoanInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "loanID", nullable = false)
+    @Column(name = "loanID")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userID", nullable = false)
     private User userID;
+
+    @Column(name="deviceId", nullable = false)
+    private int deviceId;
 
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
@@ -31,6 +34,10 @@ public class LoanInformation {
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")
     private Instant createdAt;
+
+    public LoanInformation() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -48,12 +55,24 @@ public class LoanInformation {
         this.userID = userID;
     }
 
+    public int getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = LocalDate.parse(startDate);
     }
 
     public LocalDate getEndDate() {
@@ -80,4 +99,16 @@ public class LoanInformation {
         this.createdAt = createdAt;
     }
 
+    @Override
+    public String toString() {
+        return "LoanInformation{" +
+                "id=" + id +
+                ", userID=" + userID +
+                ", deviceId=" + deviceId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", loanStatus='" + loanStatus + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

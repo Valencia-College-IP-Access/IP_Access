@@ -30,6 +30,10 @@ public class User {
     @Column(name = "created_at", updatable = false, insertable = false)
     private Instant createdAt;
 
+    public User() {
+
+    }
+
     public Integer getId() {
         return id;
     }

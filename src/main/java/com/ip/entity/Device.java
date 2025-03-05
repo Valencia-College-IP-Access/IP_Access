@@ -12,7 +12,7 @@ import java.time.Instant;
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "deviceID", nullable = false)
+    @Column(name = "deviceID")
     private Integer id;
 
     @Column(name = "deviceName", length = 50)

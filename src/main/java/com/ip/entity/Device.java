@@ -22,10 +22,9 @@ public class Device {
     @Column(name = "availability", nullable = false)
     private Boolean availability = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "renterID")
-    private User renterID;
+    @Column(name = "renterID")
+    private Integer renterID;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")
@@ -55,11 +54,11 @@ public class Device {
         this.availability = availability;
     }
 
-    public User getRenterID() {
+    public int getRenterID() {
         return renterID;
     }
 
-    public void setRenterID(User renterID) {
+    public void setRenterID(int renterID) {
         this.renterID = renterID;
     }
 

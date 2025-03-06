@@ -14,12 +14,11 @@ public class LoanInformation {
     @Column(name = "loanID")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "userID", nullable = false)
-    private User userID;
+    @Column(name = "userID", nullable = false)
+    private Integer userID;
 
     @Column(name="deviceId", nullable = false)
-    private int deviceId;
+    private Integer deviceId;
 
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
@@ -47,11 +46,11 @@ public class LoanInformation {
         this.id = id;
     }
 
-    public User getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(User userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 

@@ -13,18 +13,17 @@ class DBHelperTest {
         User user = new User();
         user.setFirstName("John");
         user.setLastName("Doe");
-        user.setEmail("email");
+        user.setEmail("a real one");
         assertTrue(DBHelper.add(user));
     }
     //add loan
     @Test
     void testAdd() {
         LoanInformation loan = new LoanInformation();
-        User user = DBHelper.getUserById(3);
         loan.setDeviceId(1);
         loan.setStartDate("2025-03-05");
         loan.setLoanStatus("on time");
-        loan.setUserID(user);
+        loan.setUserID(3);
         System.out.println(loan);
         assertTrue(DBHelper.add(loan));
         assertFalse(DBHelper.getDeviceById(loan.getDeviceId()).getAvailability());
@@ -46,7 +45,7 @@ class DBHelperTest {
         assertNotNull(device);
         //what happens when it looks for a device with an id that doesn't exist
         //(check database and change ids accordingly)
-        Device nonexistingDevice = DBHelper.getDeviceById(2);
+        Device nonexistingDevice = DBHelper.getDeviceById(5);
         assertNull(nonexistingDevice);
     }
 }

@@ -18,7 +18,7 @@ public class DBHelper {
             em.persist(user);
             tx.commit();
             result = true;
-            System.out.println("User added successfully! ID: " + user.getId());
+            System.out.println("User " + user.getFirstName() + " added successfully");
 
         } catch (Exception e) {
             if (tx.isActive()) {
@@ -65,7 +65,7 @@ public class DBHelper {
             em.persist(device);
             tx.commit();
             result = true;
-            System.out.println("User added successfully! ID: " + device.getId());
+            System.out.println("Device" + device.getDeviceName() + "added successfully!");
 
         } catch (Exception e) {
             if (tx.isActive()) {

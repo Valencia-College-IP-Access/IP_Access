@@ -69,11 +69,11 @@ public class Device {
         this.availability = availability;
     }
 
-    public int getRenterID() {
+    public Integer getRenterID() {
         return renterID;
     }
 
-    public void setRenterID(int renterID) {
+    public void setRenterID(Integer renterID) {
         this.renterID = renterID;
     }
 

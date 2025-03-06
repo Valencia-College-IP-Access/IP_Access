@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 @Entity
 @Table(name = "LoanInformation", schema = "IP_Access_Project_DB")
@@ -36,6 +37,33 @@ public class LoanInformation {
 
     public LoanInformation() {
 
+    }
+
+    public LoanInformation(int userId, int deviceId, String startDate, String loanStatus) {
+        setUserID(userId);
+        setDeviceId(deviceId);
+        setStartDate(startDate);
+        setLoanStatus(loanStatus);
+    }
+    public LoanInformation(int userId, int deviceId, LocalDate startDate, String loanStatus) {
+        setUserID(userId);
+        setDeviceId(deviceId);
+        setStartDate(startDate);
+        setLoanStatus(loanStatus);
+    }
+    public LoanInformation(int userId, int deviceId, String startDate, String loanStatus, String endDate) {
+        setUserID(userId);
+        setDeviceId(deviceId);
+        setStartDate(startDate);
+        setLoanStatus(loanStatus);
+        setEndDate(endDate);
+    }
+    public LoanInformation(int userId, int deviceId, LocalDate startDate, String loanStatus, LocalDate endDate) {
+        setUserID(userId);
+        setDeviceId(deviceId);
+        setStartDate(startDate);
+        setLoanStatus(loanStatus);
+        setEndDate(endDate);
     }
 
     public Integer getId() {
@@ -71,7 +99,11 @@ public class LoanInformation {
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = LocalDate.parse(startDate);
+        try {
+            this.startDate = LocalDate.parse(startDate);
+        } catch (DateTimeParseException dtpe) {
+            this.startDate = LocalDate.now();
+        }
     }
 
     public LocalDate getEndDate() {
@@ -80,6 +112,14 @@ public class LoanInformation {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        try {
+            this.endDate = LocalDate.parse(endDate);
+        } catch (DateTimeParseException dtpe) {
+            System.out.println("Invalid end date.");
+        }
     }
 
     public String getLoanStatus() {

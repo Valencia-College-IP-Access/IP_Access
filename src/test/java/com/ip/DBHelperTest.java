@@ -10,20 +10,13 @@ class DBHelperTest {
     //add user
     @Test
     void add() {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Doe");
-        user.setEmail("a real one");
+        User user = new User("John","Doe","real");
         assertTrue(DBHelper.add(user));
     }
     //add loan
     @Test
     void testAdd() {
-        LoanInformation loan = new LoanInformation();
-        loan.setDeviceId(1);
-        loan.setStartDate("2025-03-05");
-        loan.setLoanStatus("on time");
-        loan.setUserID(3);
+        LoanInformation loan = new LoanInformation(1, 3, "2025-03-05", "on time");
         System.out.println(loan);
         assertTrue(DBHelper.add(loan));
         assertFalse(DBHelper.getDeviceById(loan.getDeviceId()).getAvailability());
@@ -34,6 +27,18 @@ class DBHelperTest {
         Device device = new Device();
         device.setAvailability(false);
         assertTrue(DBHelper.add(device));
+    }
+
+    //Use add with a Device/User/Loan that already has an ID to update
+    @Test
+    void update() {
+        Device device = DBHelper.getDeviceById(1);
+        if(device.getAvailability()) {
+            device.setAvailability(false);
+        } else
+            device.setAvailability(true);
+        assertTrue(DBHelper.add(device));
+
     }
 
     @Test

@@ -33,6 +33,24 @@ public class User {
     public User() {
 
     }
+    public User(String firstName, String lastName, String email, String phoneNumber) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+    }
+    public User(String firstName, String lastName, String email) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+    }
+    public User(String firstName, String lastName, String zipCode, String email, String phoneNumber) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setZipCode(zipCode);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+    }
 
     public Integer getId() {
         return id;

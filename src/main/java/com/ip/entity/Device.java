@@ -30,6 +30,21 @@ public class Device {
     @Column(name = "created_at")
     private Instant createdAt;
 
+    public Device() {
+
+    }
+
+    public Device(String deviceName, boolean availability) {
+        setDeviceName(deviceName);
+        setAvailability(availability);
+    }
+
+    public Device(String deviceName, boolean availability, int renterID) {
+        setDeviceName(deviceName);
+        setAvailability(availability);
+        setRenterID(renterID);
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="com.ip/dbhelper" %>
 <html lang="en">
     <link rel="stylesheet" href="UserPrototype.css">
 <head>
@@ -9,6 +10,26 @@
     <script>
         function redirectToHome() {
             window.location.href = 'home.html';  // Redirects to the home page
+        }
+        //With code commented out this works but it's not useful.
+        // Copied from the video linked in the discord.
+        function doGet() {
+            /*fetch("http://localhost:63342/IP_Access/IPAccess/get.php")
+            .then(response => response.json())
+            .then(json => {
+                let row = `<tr><th>Name</th><th>Percentage</th></tr>`;
+                json.forEach(students => {
+                    row += `<tr><td>${students.name}</td><td>${students.percentage}</td></tr>`;
+                },
+                console.log(response),
+                );
+                document.getElementById('testTable').innerHTML = row;
+            });*/
+            let row = `<tr><th>Name</th><th>Percentage</th></tr>`;
+            document.getElementById('testTable').innerHTML = row;
+        }
+        function test() {
+
         }
     </script>
 </head>
@@ -21,14 +42,23 @@
     </header>
     <div class="login-container">
         <h2>Login</h2>
-        <form onsubmit="redirectToHome(); return false;"5>
+        <!-- There are two "logins" for testing reasons -->
+        <form action="/IP_Access/IPAccess/Login.html" method="get">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log In</button>
+            <button type="submit">Test Get request</button>
+        </form>
+        <form action="/IP_Access/IPAccess/Login.html" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Test Post request</button>
         </form>
         <div class="forgot-password">
             <a href="/forgot-password">Forgot your password?</a>
         </div>
+        <button type="submit" action="/IP_Access/IPAccess/Login.html" method="post">Get Request</button>
     </div>
+
+<table id="testTable" action= "/IP_Access/IPAccess/Login.html" method="get">hmhjh</table>
 </body>
 </html>
